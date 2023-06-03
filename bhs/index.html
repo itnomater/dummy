@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"> 
+<title>itnomater :: Bash Helpers System - The set of bash helper scripts that make writing bash scripts easier.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0">
+<meta name="date" content="2023-03-14 00:00">
+<meta name="generator" content="https://gohugo.io">
+<meta name="robots" content="index,follow">
+<link rel="alternate" type="application/rss+xml" href="http://itnomater.github.io/rss.xml" title="itnomater">
+<link rel="stylesheet" href="/css/bundle.css">
+<script src="/js/bundle.min.js"></script>
+</head>
+<body class="theme">
+<div id="font-sizes" style="display: none">
+    <span class="font-size-small"></span>
+    <span class="font-size-medium"></span>
+    <span class="font-size-large"></span>
+    <span class="font-size-huge"></span>
+</div>
+<script>
+    
+    let theme = localStorage.getItem('functional.theme') || "light";
+    let font_size = localStorage.getItem('functional.fontSize') || "medium";
+
+    document.body.classList.add('theme-' + (theme === "light" ? 'light' : 'dark'));
+
+    let def_fonts = document.getElementById('font-sizes');
+    let font_size_px = window.getComputedStyle(
+        document.getElementsByClassName('font-size-' + font_size)[0], 
+        null).getPropertyValue('font-size');
+
+    document.getElementsByTagName('html')[0].style.fontSize = font_size_px;
+    
+</script>
+<a id="anchor-top" name="top"></a>
+<header>
+<div><aside id="configbox">
+    <div id="configbox-cover"></div>
+    <button id="action-configbox-toggle">&#x2699;</button> 
+    <div id="configbox-content" class="theme">
+        <button id="action-configbox-close" class="theme">&times;</button>
+        <hr>
+        <div id="agree-functional" class="hidden">
+            <div>
+                <button id="action-set-font-small" class="theme action-font-set-size font-size-small" data-value="small"><span>A</span></button> 
+                <button id="action-set-font-medium" class="theme action-font-set-size font-size-medium" data-value="medium"><span>A</span></button>
+                <button id="action-set-font-large" class="theme action-font-set-size font-size-large" data-value="large"><span>A</span></button>
+                <button id="action-set-font-huge" class="theme action-font-set-size font-size-huge" data-value="huge"><span>A</span></button>
+                <button id="action-theme-switcher">
+                    <div class="theme-inverse">a</div>
+                </button>
+            </div>
+        <hr>
+            <div>
+                <a id="action-agree-toggle" class="collapse" data-id="#box-agreements" href="javascript:void(0)">Your agreements</a> 
+                <div id="box-agreements" class="hidden">
+                    <p style="font-size: 12pt; text-align: center">You agreed to store your settings on your computer.<br>
+                    You can revoke it if you want. Your settings will be lost.<br>
+                    <a id="action-agree-revoke" title="Revoke agree" href="#">&times; Revoke my agreed</a> </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="disagree-functional">
+            <p style="font-size: 12pt; text-align: center">If you want to keep your settings like font size and color theme,<br>
+            you must agree to store these data on your computer.<br>
+            <a id="action-agree-aprove" title="Aprove agree" href="javascript:void(0)">&#x2714;Yes, I agree</a>.</p>
+        </div>
+    </div>
+</aside>
+<div id="live-coding"></div>
+    <h1>itnomater</h1>
+    
+    
+        <h2>Bash Helpers System</h2>
+    
+    
+    
+        
+    
+    
+    
+    <nav id="menubar">
+        <ul>
+        <li><a href="/" title=""> <span class="font-adjust">home</span> </a></li><li><a href="/bhs" title=""> <span class="font-adjust">about</span> </a></li><li><a href="/bhs/lib" title=""> <span class="font-adjust">libraries</span> </a></li><li><a href="https://github.com/itnomater/bhs" title=""> <span class="font-adjust">source code</span> </a></li>
+        </ul>
+    </nav>
+    
+    
+</div>
+<nav id="breadcrumbs" class="theme">
+<button class="theme" id="action-menu-open">&#x2630;</button>
+<ul><li><a href="/" title="">Home</a></li><li>BHS</li>
+</ul>
+</nav>
+    
+</header>
+
+<main>
+
+
+<aside id="side-menu">
+<div id="side-menu-cover"></div>
+<div id="side-menu-content" class="theme">
+<button class="theme" id="action-menu-close">&times;</button>
+    
+<nav>
+<ul id="main-table-of-content">
+    
+        
+            
+<li><a href="#description">Description</a></li>
+            
+
+            
+        
+            
+<li><a href="#licence">Licence</a></li>
+            
+
+            
+        
+            
+<li><a href="#how-to-install">How to Install</a></li>
+            
+
+            
+                
+                    
+<li class="indent"><a href="#get-the-code">Get the Code</a></li>
+                    
+                
+                    
+<li class="indent"><a href="#set-environment-variables">Set Environment Variables</a></li>
+                    
+                
+            
+        
+            
+<li><a href="#how-to-use">How to Use</a></li>
+            
+
+            
+        
+            
+<li><a href="#examples">Examples</a></li>
+            
+
+            
+        
+            
+<li><a href="#deeper-into-the-code">Deeper Into the Code</a></li>
+            
+
+            
+        
+    
+</ul>
+</nav>
+</div>
+</aside>
+
+
+
+<article>
+<h1 id="anchor-top-article">Bash Helpers System</h1>
+<p>The set of bash helper scripts that make writing bash scripts easier.</p>
+
+<h2 id="description">Description</h2>
+<p>If you don&rsquo;t want to write the same code again and again, you have several options:</p>
+<ol>
+<li>Ignore it and do the action repeatedly. Sometimes it works, but rather, in long-term, it is annoying.</li>
+<li>Find &ldquo;ready solution&rdquo; - a library/framework/script/whatever that provides a uniform interface for the processes you need. It makes tasks easier to write and saves your time.</li>
+<li>Create your own tool that will be perfect for everyone :) (just kidding, there are no perfect solutions at the moment, only more or less useful. Maybe when A.I. will start creating the software without errors.. who knows :)</li>
+</ol>
+<p>I had written many scripts until I discovered the above secret. So I decided to build libraries mechanism that makes easier every-day tasks. Maybe yours too.
+Think for a moment. What is the purpose of shell scripts in general? Automation of the processes. Do you agree with that? So think now, what kind of actions do your shell scripts proceed? From my experience there are:</p>
+<ul>
+<li>File operations (e.g. listing, creating, copying, renaming, removing, getting information, generating checksums, searching, comparing).</li>
+<li>Operations on data (e.g. searching patterns, concatenating texts, extracting texts, comparing text, doing arithmetic operations).</li>
+<li>Interact with the user (e.g. getting information from the user, printing messages/errors).</li>
+</ul>
+<p>In summary, nothing special. Many people (probably you too) know commands that can do above stuff, but.. not always these raw commands are user friendly in shell scripts. I prefer uniformity and order in the code.
+So let&rsquo;s show some <a href="#examples">examples</a> and compare the BHS with standard bash scripts.</p>
+<p>Let&rsquo;s assume some concepts at the beginning:</p>
+<ol>
+<li>Modules mechanism - a set of the bash helper scripts (libraries) included on demand into your proper script.</li>
+<li>The library - the bash script contains a set of functions (like the interface).</li>
+<li>The proper script - any bash script created by you.</li>
+<li>The core - the main library included in the proper script at the beginning by expression: <br>
+<code>. ${SHELL_BOOTSTRAP}</code></li>
+</ol>
+<p>Let&rsquo;s make some assumptions.</p>
+<ol>
+<li>You have to set the environment variable named <code>SHELL_ROOTDIR</code> that indicates the root directory of the BHS mechanism.</li>
+<li>All libraries are located in the directory: <code>${SHELL_ROOTDIR}/lib</code></li>
+<li>Each library is named <code>{name}.inc.sh</code></li>
+<li>It is a good practice to use uniform function names like this: <code>{library}_{action}()</code></li>
+<li>Each library have to contain the function named <code>{library}_init()</code> that initializes it (e.g. prepare the library, include other libraries). This function is obligatory and called automaticaly. If the function returns a non-zero value that means the loading process failed. You should handle it in your proper script.</li>
+<li>Functions for library internal use should be prefixed by <code>_</code></li>
+<li>You can define an extra functions <code>{library}_{user|root}_commands</code>. Each of them returns a list of needed commands for the user and/or the root. How does it work?
+a) For user commands: When you call any command from the user command list and it doesn&rsquo;t exist, you will see an error message and the script will terminate.
+b) For root commands: You don&rsquo;t need to use a sudo prefix. It will be added by default. When you call any command from the root command list and it doesn&rsquo;t exist or you don&rsquo;t have permissions, you will see an error message and the script will terminate.</li>
+</ol>
+<p>See <a href="/bhs/lib">libraries list</a> for more details.</p>
+<h2 id="licence">Licence</h2>
+<p>All BHS code is available under GNU General Public License v3.0.</p>
+<h2 id="how-to-install">How to install</h2>
+<h3 id="get-the-code">Get the code</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/itnomater/bhs ~/.scripts
+</span></span></code></pre></div><h3 id="set-environment-variables">Set environment variables</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#007020">export</span> <span style="color:#963">SHELL_ROOTDIR</span><span style="color:#333">=</span><span style="background-color:#eee">${</span><span style="color:#963">HOME</span><span style="background-color:#eee">}</span>/.scripts       <span style="color:#888"># If you install the BHS in different directory, set the proper path.</span>
+</span></span><span style="display:flex;"><span><span style="color:#007020">export</span> <span style="color:#963">SHELL_CONFDIR</span><span style="color:#333">=</span><span style="background-color:#eee">${</span><span style="color:#963">SHELL_ROOTDIR</span><span style="background-color:#eee">}</span>/conf  <span style="color:#888"># In your environment, this directory should be outside the repository.</span>
+</span></span><span style="display:flex;"><span><span style="color:#007020">export</span> <span style="color:#963">SHELL_LIBDIR</span><span style="color:#333">=</span><span style="background-color:#eee">${</span><span style="color:#963">SHELL_ROOTDIR</span><span style="background-color:#eee">}</span>/lib
+</span></span><span style="display:flex;"><span><span style="color:#007020">export</span> <span style="color:#963">SHELL_LANGDIR</span><span style="color:#333">=</span><span style="background-color:#eee">${</span><span style="color:#963">SHELL_ROOTDIR</span><span style="background-color:#eee">}</span>/lang
+</span></span><span style="display:flex;"><span><span style="color:#007020">export</span> <span style="color:#963">SHELL_BINDIR</span><span style="color:#333">=</span><span style="background-color:#eee">${</span><span style="color:#963">SHELL_ROOTDIR</span><span style="background-color:#eee">}</span>/bin
+</span></span><span style="display:flex;"><span><span style="color:#007020">export</span> <span style="color:#963">SHELL_BOOTSTRAP</span><span style="color:#333">=</span><span style="background-color:#eee">${</span><span style="color:#963">SHELL_LIBDIR</span><span style="background-color:#eee">}</span>/core.inc.sh
+</span></span></code></pre></div><p>You can put the above code in your shell config file.</p>
+<h2 id="how-to-use">How to use</h2>
+<p>To use the BHS, you need to include the bootstrap library in your bash script:<br>
+<code>. ${SHELL_BOOTSTRAP}</code>. And now, you can load any other libraries.</p>
+<div class="code2">
+
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><aside>script</aside>
+
+</span></span><span style="display:flex;"><span>. <span style="background-color:#eee">${</span><span style="color:#963">SHELL_BOOTSTRAP</span><span style="background-color:#eee">}</span>
+</span></span><span style="display:flex;"><span>lib conf
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#888"># Store a configuration variable.</span>
+</span></span><span style="display:flex;"><span>conf_set <span style="background-color:#fff0f0">&#39;section:key&#39;</span> <span style="background-color:#fff0f0">&#39;foobar&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#888"># Get a configuration variable.</span>
+</span></span><span style="display:flex;"><span><span style="color:#963">value</span><span style="color:#333">=</span><span style="color:#080;font-weight:bold">$(</span>conf_get <span style="background-color:#fff0f0">&#39;section:key&#39;</span><span style="color:#080;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#007020">echo</span> <span style="background-color:#fff0f0">&#34;The value of section:key is </span><span style="background-color:#eee">${</span><span style="color:#963">value</span><span style="background-color:#eee">}</span><span style="background-color:#fff0f0">&#34;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><aside>result</aside>
+
+</span></span><span style="display:flex;"><span>The value of section:key is foobar
+</span></span></code></pre></div></div>
+
+<h2 id="examples">Examples</h2>
+<h3 id="opt_is--opt_get-instead-getopts">opt_is &amp;&amp; opt_get instead getopts</h3>
+<p>Typically, to read bash script options from the command line, you use something like:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><aside>bash</aside>
+
+</span></span><span style="display:flex;"><span><span style="color:#888">#!/bin/bash</span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-weight:bold">while</span> <span style="color:#007020">getopts</span> <span style="background-color:#fff0f0">&#34;f:b:&#34;</span> arg; <span style="color:#080;font-weight:bold">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-weight:bold">case</span> <span style="color:#963">$arg</span> in
+</span></span><span style="display:flex;"><span>        f<span style="color:#333">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#007020">echo</span> <span style="background-color:#fff0f0">&#39;Foo&#39;</span>
+</span></span><span style="display:flex;"><span>            ;;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        b<span style="color:#333">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#963">bar</span><span style="color:#333">=</span><span style="color:#963">$OPTARG</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#007020">echo</span> <span style="background-color:#fff0f0">&#34;Bar: </span><span style="background-color:#eee">${</span><span style="color:#963">bar</span><span style="background-color:#eee">}</span><span style="background-color:#fff0f0">&#34;</span>
+</span></span><span style="display:flex;"><span>            ;;
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-weight:bold">esac</span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-weight:bold">done</span>
+</span></span></code></pre></div><p>This is simple code, but I prefer something even simpler, like:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><aside>BHS</aside>
+
+</span></span><span style="display:flex;"><span><span style="color:#888">#!/bin/bash</span>
+</span></span><span style="display:flex;"><span>. <span style="background-color:#eee">${</span><span style="color:#963">SHELL_BOOTSTRAP</span><span style="background-color:#eee">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>opt_is <span style="background-color:#fff0f0">&#39;f&#39;</span> <span style="color:#333">&amp;&amp;</span> <span style="color:#007020">echo</span> <span style="background-color:#fff0f0">&#39;Foo&#39;</span>
+</span></span><span style="display:flex;"><span>opt_is <span style="background-color:#fff0f0">&#39;b&#39;</span> <span style="color:#333">&amp;&amp;</span> <span style="color:#007020">echo</span> <span style="color:#080;font-weight:bold">$(</span>opt_get <span style="background-color:#fff0f0">&#39;b&#39;</span><span style="color:#080;font-weight:bold">)</span>
+</span></span></code></pre></div><hr>
+<h3 id="text--textln-instead-echo">text / textln instead echo</h3>
+<div class="code2">
+
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><aside>bash</aside>
+
+</span></span><span style="display:flex;"><span><span style="color:#888">#!/bin/bash</span>
+</span></span><span style="display:flex;"><span><span style="color:#007020">echo</span> <span style="background-color:#fff0f0">&#34;Red Alert&#34;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><aside>BHS</aside>
+
+</span></span><span style="display:flex;"><span><span style="color:#888">#!/bin/bash</span>
+</span></span><span style="display:flex;"><span>. <span style="background-color:#eee">${</span><span style="color:#963">SHELL_BOOTSTRAP</span><span style="background-color:#eee">}</span>
+</span></span><span style="display:flex;"><span>lib echo3
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>textln -m <span style="background-color:#fff0f0">&#34;Red Alert&#34;</span>
+</span></span></code></pre></div></div>
+
+<p>Is it really that crazy to say that more lines of code are better? Take a look below and answer for yourself:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><aside>bash</aside>
+
+</span></span><span style="display:flex;"><span><span style="color:#888">#!/bin/bash</span>
+</span></span><span style="display:flex;"><span><span style="color:#007020">echo</span> <span style="background-color:#fff0f0">&#34;\x1b[37;41;Red Alert!&#34;</span>            <span style="color:#888"># Uuuugly!</span>
+</span></span></code></pre></div><p>and this:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><aside>BHS</aside>
+
+</span></span><span style="display:flex;"><span><span style="color:#888">#!/bin/bash</span>
+</span></span><span style="display:flex;"><span>. <span style="background-color:#eee">${</span><span style="color:#963">SHELL_BOOTSTRAP</span><span style="background-color:#eee">}</span>
+</span></span><span style="display:flex;"><span>lib echo3
+</span></span><span style="display:flex;"><span>textln -m <span style="background-color:#fff0f0">&#34;Red Alert!&#34;</span> -c white -b red
+</span></span></code></pre></div><hr>
+<h3 id="dt_datetime-instead-date">dt_datetime instead date</h3>
+<div class="code2">
+
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><aside>bash</aside>
+
+</span></span><span style="display:flex;"><span><span style="color:#888">#!/bin/bash</span>
+</span></span><span style="display:flex;"><span>date +<span style="background-color:#fff0f0">&#39;%Y-%m-%d %H:%M:%S&#39;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><aside>BHS</aside>
+
+</span></span><span style="display:flex;"><span><span style="color:#888">#!/bin/bash</span>
+</span></span><span style="display:flex;"><span>. <span style="background-color:#eee">${</span><span style="color:#963">SHELL_BOOTSTRAP</span><span style="background-color:#eee">}</span>
+</span></span><span style="display:flex;"><span>lib dt
+</span></span><span style="display:flex;"><span>dt_datetime
+</span></span></code></pre></div></div>
+
+<hr>
+<p>Okay, let&rsquo;s move on to something more interesting. Assume we need to store script configuration in an external file. How to do this in a bash script using the traditional method?
+You can use the <code>read</code> and <code>while</code> commands</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><aside>bash</aside>
+
+</span></span><span style="display:flex;"><span><span style="color:#888">#!/bin/bash</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-weight:bold">while</span> <span style="color:#007020">read</span> line; <span style="color:#080;font-weight:bold">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#007020">echo</span> <span style="background-color:#fff0f0">&#34;</span><span style="background-color:#eee">${</span><span style="color:#963">line</span><span style="background-color:#eee">}</span><span style="background-color:#fff0f0">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-weight:bold">done</span> &lt; <span style="background-color:#eee">${</span><span style="color:#963">filename</span><span style="background-color:#eee">}</span>
+</span></span></code></pre></div><p>But what if you have a configuration file in a format like this:</p>
+<pre tabindex="0"><code><aside>data</aside>
+
+[app]
+name = BHS
+version = 3.14
+
+[database]
+host = localhost
+port = 3306
+user = foo
+pass = secret
+</code></pre><p>How to read it? It is more complicated, but I will give you a ready-made solution. Check this out:</p>
+<div class="code2">
+
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><aside>BHS</aside>
+
+</span></span><span style="display:flex;"><span><span style="color:#888">#!/bin/bash</span>
+</span></span><span style="display:flex;"><span>. <span style="background-color:#eee">${</span><span style="color:#963">SHELL_BOOTSTRAP</span><span style="background-color:#eee">}</span>
+</span></span><span style="display:flex;"><span>lib conf 
+</span></span><span style="display:flex;"><span>conf_load <span style="background-color:#fff0f0">&#39;path_to_ini_file&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#007020">printf</span> <span style="background-color:#fff0f0">&#39;App: %s, version: %s&#39;</span> <span style="color:#666;background-color:#fff0f0;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#666;background-color:#fff0f0;font-weight:bold"></span>    <span style="color:#080;font-weight:bold">$(</span>conf_get <span style="background-color:#fff0f0">&#39;app:name&#39;</span><span style="color:#080;font-weight:bold">)</span> <span style="color:#666;background-color:#fff0f0;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#666;background-color:#fff0f0;font-weight:bold"></span>    <span style="color:#080;font-weight:bold">$(</span>conf_get <span style="background-color:#fff0f0">&#39;app:version&#39;</span><span style="color:#080;font-weight:bold">)</span>       
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><aside>output</aside>
+
+</span></span><span style="display:flex;"><span>App: BHS, version: 3.14
+</span></span></code></pre></div></div>
+
+<h2 id="deeper-into-the-code">Deeper into the code</h2>
+<p>This part is only for people who want to know more about how it works.</p>
+<h3 id="directory-structure">Directory structure</h3>
+<p>The BHS scripts are stored in <code>${SHELL_ROOTDIR}</code> directory:</p>
+<pre tabindex="0"><code>ls -1 ${SHELL_ROOTDIR}
+/bin        # BHS Binaries - bash scripts use the BHS libraries. 
+/conf       # Extra configuration for the BHS Binaries.
+/lang       # Language data for the BHS.
+/lib        # BHS Libraries.
+</code></pre><h3 id="code-structure">Code structure</h3>
+<p>I use comments in the format:</p>
+<pre tabindex="0"><code>#/**
+# {function description}
+#
+# @param    {data type}     {argument number}   {alternative option}    {description}
+#
+#*/
+</code></pre><p>Why <code>/**</code> and <code>*/</code>? I use this code block to comment in my code editor. It is a uniform syntax for many programming languages I use. I configured my favorite code editor to fold that section.</p>
+<pre tabindex="0"><code>#/**
+# This function do thingamagic.
+#
+# @param    String  $1  -f  Foo value.
+# @param    String  $2  -b  Bar value.
+# @param    String  $3      Extra value.
+#*/
+thingamagic() {
+    ...
+}
+</code></pre><p>That means you can call this function in two ways. Using the standard method:</p>
+<pre tabindex="0"><code>thingamagic &#39;foo value&#39; &#39;bar value&#39; &#39;extra value&#39;
+</code></pre><p>Or with options:</p>
+<pre tabindex="0"><code>thingamagic -f &#39;foo value&#39; -b &#39;bar value&#39;
+</code></pre><h3 id="variable-types">Variable types</h3>
+<p>Bash doesn&rsquo;t support strict typing of variables, but I&rsquo;ve tried to add the proper variable type in the function description.</p>
+<ul>
+<li>Boolean</li>
+<li>Number</li>
+<li>String</li>
+</ul>
+<h3 id="return-value">Return value</h3>
+<p>Functions in bash always return numeric values as operation status. In some cases the value means:</p>
+<ul>
+<li>0 success</li>
+<li>!0 an error occured</li>
+</ul>
+<p>So as the BHS.</p>
+<h3 id="code-markers">Code markers</h3>
+<p>Some parts of the code are marked with tags as below:</p>
+<table>
+<thead>
+<tr>
+<th>tag</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[HINT]</td>
+<td>Sugestion of change.</td>
+</tr>
+<tr>
+<td>[TODO]</td>
+<td>Something to add.</td>
+</tr>
+<tr>
+<td>[WARN]</td>
+<td>Warning message.</td>
+</tr>
+<tr>
+<td>[FIXIT]</td>
+<td>This code needs fixing!</td>
+</tr>
+<tr>
+<td>[REFACTOR]</td>
+<td>This code needs refactoring.</td>
+</tr>
+<tr>
+<td>[EXPERIMENTAL]</td>
+<td>This code is experimental.</td>
+</tr>
+<tr>
+<td>[DEPRECATED]</td>
+<td>This code is deprecated. You shouldn&rsquo;t use it.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+</main>
+
+<footer id="navigation" class="theme">
+<nav>
+<div><hr>
+<a class="nav-parent" href="/" title="Itnomater home page"><span class="hidden320">Itnomater home page</span></a>
+    </div>
+
+
+<div><hr>
+<a class="nav-next" href="/bhs/lib/" title="Libraries"><span class="hidden320">Libraries</span></a></div>
+
+</nav>
+<a id="nav-top" class="theme" href="#top" title="On top">&#x21ea</a>
+</footer>
+
+</body>
+</html>

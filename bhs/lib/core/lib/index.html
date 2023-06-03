@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"> 
+<title>itnomater :: Function lib - Load the library from &lt;code&gt;${SHELL_LIBDIR}&lt;/code&gt; directory.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0">
+<meta name="date" content="2023-03-18 22:20">
+<meta name="generator" content="https://gohugo.io">
+<meta name="robots" content="index,follow">
+<link rel="alternate" type="application/rss+xml" href="http://itnomater.github.io/rss.xml" title="itnomater">
+<link rel="stylesheet" href="/css/bundle.css">
+<script src="/js/bundle.min.js"></script>
+</head>
+<body class="theme">
+<div id="font-sizes" style="display: none">
+    <span class="font-size-small"></span>
+    <span class="font-size-medium"></span>
+    <span class="font-size-large"></span>
+    <span class="font-size-huge"></span>
+</div>
+<script>
+    
+    let theme = localStorage.getItem('functional.theme') || "light";
+    let font_size = localStorage.getItem('functional.fontSize') || "medium";
+
+    document.body.classList.add('theme-' + (theme === "light" ? 'light' : 'dark'));
+
+    let def_fonts = document.getElementById('font-sizes');
+    let font_size_px = window.getComputedStyle(
+        document.getElementsByClassName('font-size-' + font_size)[0], 
+        null).getPropertyValue('font-size');
+
+    document.getElementsByTagName('html')[0].style.fontSize = font_size_px;
+    
+</script>
+<a id="anchor-top" name="top"></a>
+<header>
+<div><aside id="configbox">
+    <div id="configbox-cover"></div>
+    <button id="action-configbox-toggle">&#x2699;</button> 
+    <div id="configbox-content" class="theme">
+        <button id="action-configbox-close" class="theme">&times;</button>
+        <hr>
+        <div id="agree-functional" class="hidden">
+            <div>
+                <button id="action-set-font-small" class="theme action-font-set-size font-size-small" data-value="small"><span>A</span></button> 
+                <button id="action-set-font-medium" class="theme action-font-set-size font-size-medium" data-value="medium"><span>A</span></button>
+                <button id="action-set-font-large" class="theme action-font-set-size font-size-large" data-value="large"><span>A</span></button>
+                <button id="action-set-font-huge" class="theme action-font-set-size font-size-huge" data-value="huge"><span>A</span></button>
+                <button id="action-theme-switcher">
+                    <div class="theme-inverse">a</div>
+                </button>
+            </div>
+        <hr>
+            <div>
+                <a id="action-agree-toggle" class="collapse" data-id="#box-agreements" href="javascript:void(0)">Your agreements</a> 
+                <div id="box-agreements" class="hidden">
+                    <p style="font-size: 12pt; text-align: center">You agreed to store your settings on your computer.<br>
+                    You can revoke it if you want. Your settings will be lost.<br>
+                    <a id="action-agree-revoke" title="Revoke agree" href="#">&times; Revoke my agreed</a> </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="disagree-functional">
+            <p style="font-size: 12pt; text-align: center">If you want to keep your settings like font size and color theme,<br>
+            you must agree to store these data on your computer.<br>
+            <a id="action-agree-aprove" title="Aprove agree" href="javascript:void(0)">&#x2714;Yes, I agree</a>.</p>
+        </div>
+    </div>
+</aside>
+<div id="live-coding"></div>
+    <h1>itnomater</h1>
+    
+    
+        
+        
+            
+        
+            
+                <h2>Bash Helpers System</h2>
+                
+            
+        
+            
+        
+            
+        
+    
+    
+    
+        
+    
+    
+    
+    <nav id="menubar">
+        <ul>
+        <li><a href="/" title=""> <span class="font-adjust">home</span> </a></li><li><a href="/bhs" title=""> <span class="font-adjust">about</span> </a></li><li><a href="/bhs/lib" title=""> <span class="font-adjust">libraries</span> </a></li><li><a href="https://github.com/itnomater/bhs" title=""> <span class="font-adjust">source code</span> </a></li>
+        </ul>
+    </nav>
+    
+    
+</div>
+<nav id="breadcrumbs" class="theme">
+<button class="theme" id="action-menu-open">&#x2630;</button>
+<ul><li><a href="/" title="">Home</a></li><li><a href="/bhs/" title="">BHS</a></li><li><a href="/bhs/lib/" title="">Libraries</a></li><li><a href="/bhs/lib/core/" title="">core</a></li><li>lib</li>
+</ul>
+</nav>
+    
+</header>
+
+<main>
+
+
+    
+<aside id="side-menu">
+<div id="side-menu-cover"></div>
+<div id="side-menu-content" class="theme">
+<button class="theme" id="action-menu-close">&times;</button>
+        <h5>Functions</h5>
+<nav>
+<ul>
+        
+            
+            <li ><a href="http://itnomater.github.io/bhs/lib/core/scr/">scr</a></li>
+            
+        
+            
+            <li ><a href="http://itnomater.github.io/bhs/lib/core/scrname/">scrname</a></li>
+            
+        
+            
+            <li ><a href="http://itnomater.github.io/bhs/lib/core/scrmethod/">scrmethod</a></li>
+            
+        
+            
+            <li ><a href="http://itnomater.github.io/bhs/lib/core/realscr/">realscr</a></li>
+            
+        
+            
+            <li ><a href="http://itnomater.github.io/bhs/lib/core/cwd/">cwd</a></li>
+            
+        
+            
+            <li ><a href="http://itnomater.github.io/bhs/lib/core/pid/">pid</a></li>
+            
+        
+            
+            <li class="active" ><a href="http://itnomater.github.io/bhs/lib/core/lib/">lib</a></li>
+            
+        
+            
+            <li ><a href="http://itnomater.github.io/bhs/lib/core/is_lib/">is_lib</a></li>
+            
+        
+            
+            <li ><a href="http://itnomater.github.io/bhs/lib/core/is_function/">is_function</a></li>
+            
+        
+            
+            <li ><a href="http://itnomater.github.io/bhs/lib/core/is_command/">is_command</a></li>
+            
+        
+            
+            <li ><a href="http://itnomater.github.io/bhs/lib/core/is_user/">is_user</a></li>
+            
+        
+            
+            <li ><a href="http://itnomater.github.io/bhs/lib/core/is_group/">is_group</a></li>
+            
+        
+            
+            <li ><a href="http://itnomater.github.io/bhs/lib/core/is_sudo/">is_sudo</a></li>
+            
+        
+            
+            <li ><a href="http://itnomater.github.io/bhs/lib/core/as_root/">as_root</a></li>
+            
+        
+            
+        
+            
+        
+            
+        
+</ul>
+</nav>
+</div>
+</aside>
+    
+
+
+
+<article>
+
+<h1 id="anchor-top-article">Function lib</h1>
+<h4>Description</h4>
+<p>Load the library from <code>${SHELL_LIBDIR}</code> directory.</p><p>When loading fails it generates a fatal error and script stops immediately with the error message. Additionally, it generates a syslog entry using the <code>logger</code> command.</p>
+<hr>
+
+<h4>Signature</h4>
+<p class="function-name">
+<b>lib</b> (
+</p>
+<ol class="arguments">
+
+<li><span>String</span> <span></span> <span>Library name.</span>
+    
+    </li>
+
+</ol>
+<p class="function-end">
+)
+</p>
+
+<hr>
+<h4>Return value</h4>
+<p>Operation status.</p>
+
+
+
+<hr>
+<h4>Examples</h4>
+
+<div class="code2">
+
+
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#579">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#579"></span>. <span style="background-color:#eee">${</span><span style="color:#963">SHELL_BOOTSTRAP</span><span style="background-color:#eee">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>lib dt          <span style="color:#888"># If the library is loaded successfully, you can use it.</span>
+</span></span><span style="display:flex;"><span>dt_timestamp    <span style="color:#888"># It prints current UNIX timestamp.</span></span></span></code></pre></div>
+
+
+<div><pre><code>$ /path/to/foo.sh
+1683406273</code></pre></div>
+
+
+
+
+
+</div>
+
+
+
+
+</article>
+
+</main>
+
+<footer id="navigation" class="theme">
+<nav>
+<div><hr>
+<a class="nav-parent" href="/bhs/lib/core/" title="Library core"><span class="hidden320">Library core</span></a>
+    </div>
+
+
+<div>
+        
+        
+        
+            
+            
+            
+        
+            
+            
+            
+        
+            
+            
+            
+        
+            
+            
+            
+        
+            
+            
+            
+        
+            
+            
+            
+        
+            
+            
+                
+<a class="nav-prev" href="http://itnomater.github.io/bhs/lib/core/pid/" title="Function pid"><span class="hidden320">Function pid</span></a>
+            
+            
+        
+            
+            
+            
+        
+            
+            
+            
+        
+            
+            
+            
+        
+            
+            
+            
+        
+            
+            
+            
+        
+            
+            
+            
+        
+            
+            
+            
+        
+            
+            
+            
+        
+            
+            
+            
+        
+            
+            
+            
+        
+        
+        
+        
+            
+
+            
+        
+            
+
+            
+        
+            
+
+            
+        
+            
+
+            
+        
+            
+
+            
+        
+            
+
+            
+        
+            
+
+            
+                
+            
+        
+            
+
+            
+<hr>
+<a class="nav-next" href="http://itnomater.github.io/bhs/lib/core/is_lib/" title="Function is_lib"><span class="hidden320">Function is_lib</span></a>
+                
+            
+        
+            
+
+            
+        
+            
+
+            
+        
+            
+
+            
+        
+            
+
+            
+        
+            
+
+            
+        
+            
+
+            
+        
+            
+
+            
+        
+            
+
+            
+        
+            
+
+            
+        </div>
+
+</nav>
+<a id="nav-top" class="theme" href="#top" title="On top">&#x21ea</a>
+</footer>
+
+</body>
+</html>
