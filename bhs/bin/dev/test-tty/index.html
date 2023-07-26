@@ -1,0 +1,57 @@
+<!doctype html><html><head><meta charset=utf-8><title>itnomater :: Script test-tty - Check if UTF-8 characters are available in the current terminal font.</title><meta name=viewport content="width=device-width,initial-scale=1,user-scalable=yes,minimum-scale=1"><meta name=date content="2023-07-25 15:26"><meta name=generator content="https://gohugo.io"><meta name=robots content="index,follow"><link rel=alternate type=application/rss+xml href=http://itnomater.github.io/rss.xml title=itnomater><link rel=stylesheet href=/css/bundle.css><script src=/js/bundle.min.js></script></head><body class=theme><div id=font-sizes style=display:none><span class=font-size-small></span>
+<span class=font-size-medium></span>
+<span class=font-size-large></span>
+<span class=font-size-huge></span></div><script>let theme=localStorage.getItem("functional.theme")||"light",font_size=localStorage.getItem("functional.fontSize")||"medium";document.body.classList.add("theme-"+(theme==="light"?"light":"dark"));let def_fonts=document.getElementById("font-sizes"),font_size_px=window.getComputedStyle(document.getElementsByClassName("font-size-"+font_size)[0],null).getPropertyValue("font-size");document.getElementsByTagName("html")[0].style.fontSize=font_size_px</script><a id=anchor-top name=top></a><header><div><aside id=configbox><div id=configbox-cover></div><button id=action-configbox-toggle>&#9881;</button><div id=configbox-content class=theme><button id=action-configbox-close class=theme>&#215;</button><hr><div id=agree-functional class=hidden><div><button id=action-set-font-small class="theme action-font-set-size font-size-small" data-value=small><span>A</span></button>
+<button id=action-set-font-medium class="theme action-font-set-size font-size-medium" data-value=medium><span>A</span></button>
+<button id=action-set-font-large class="theme action-font-set-size font-size-large" data-value=large><span>A</span></button>
+<button id=action-set-font-huge class="theme action-font-set-size font-size-huge" data-value=huge><span>A</span></button>
+<button id=action-theme-switcher><div class=theme-inverse>a</div></button></div><hr><div><a id=action-agree-toggle class=collapse data-id=#box-agreements href=javascript:void(0)>Your agreements</a><div id=box-agreements class=hidden><p style=font-size:12pt;text-align:center>You agreed to store your settings on your computer.<br>You can revoke it if you want. Your settings will be lost.<br><a id=action-agree-revoke title="Revoke agree" href=#>&#215; Revoke my agreed</a></p></div></div></div><div id=disagree-functional><p style=font-size:12pt;text-align:center>If you want to keep your settings like font size and color theme,<br>you must agree to store these data on your computer.<br><a id=action-agree-aprove title="Aprove agree" href=javascript:void(0)>&#x2714;Yes, I agree</a>.</p></div></div></aside><div id=live-coding></div><h1>itnomater</h1><h2>Bash Helpers System</h2><nav id=menubar><ul><li><a href=/ title><span class=font-adjust>home</span></a></li><li><a href=/bhs title><span class=font-adjust>about</span></a></li><li><a href=/bhs/lib title><span class=font-adjust>libraries</span></a></li><li><a href=/bhs/bin title><span class=font-adjust>binaries</span></a></li><li><a href=https://github.com/itnomater/bhs title><span class=font-adjust>source code</span></a></li></ul></nav></div><nav id=breadcrumbs class=theme><button class=theme id=action-menu-open>&#9776;</button><ul><li><a href=/ title>Home</a></li><li><a href=/bhs/ title>BHS</a></li><li><a href=/bhs/bin/ title>Binaries</a></li><li><a href=/bhs/bin/dev/ title>dev</a></li><li>test-tty</li></ul></nav></header><main><aside id=side-menu><div id=side-menu-cover></div><div id=side-menu-content class=theme><button class=theme id=action-menu-close>&#215;</button><h5>Scripts</h5><nav><ul><li><a href=http://itnomater.github.io/bhs/bin/dev/gendata/>gendata</a></li><li><a href=http://itnomater.github.io/bhs/bin/dev/ascii/>ascii</a></li><li><a href=http://itnomater.github.io/bhs/bin/dev/test-bars/>test-bars</a></li><li><a href=http://itnomater.github.io/bhs/bin/dev/test-colors/>test-colors</a></li><li><a href=http://itnomater.github.io/bhs/bin/dev/test-colors16/>test-colors16</a></li><li><a href=http://itnomater.github.io/bhs/bin/dev/test-colors256/>test-colors256</a></li><li class=active><a href=http://itnomater.github.io/bhs/bin/dev/test-tty/>test-tty</a></li><li><a href=http://itnomater.github.io/bhs/bin/dev/test-directory/>test-directory</a></li><li><a href=http://itnomater.github.io/bhs/bin/dev/test-dialog/>test-dialog</a></li><li><a href=http://itnomater.github.io/bhs/bin/dev/test-whiptail/>test-whiptail</a></li><li><a href=http://itnomater.github.io/bhs/bin/dev/test-cron/>test-cron</a></li><li><a href=http://itnomater.github.io/bhs/bin/dev/http-request/>http-request</a></li></ul></nav></div></aside><article><h1 id=anchor-top-article>Script test-tty</h1><h4>Description</h4><p>Check if UTF-8 characters are available in the current terminal font.</p><hr><h4>Arguments</h4><ol class=arguments><li><span>String</span> <span></span> <span>Category</span><ul><li><span></span> <span>powerline</span> <span>Show arrows for powerline status.</span></li><li><span></span> <span>arrows</span> <span>Show arrow symbols.</span></li><li><span></span> <span>alpha</span> <span>Show alpha-numerical symbols.</span></li><li><span></span> <span>frames</span> <span>Show frame symbols.</span></li><li><span></span> <span>blocks</span> <span>Show block symbols.</span></li></ul></li><li><span>Boolean</span> <span></span> <span>Verbose mode</span><ul><li><span></span> <span>{empty}</span> <span>Quiet mode (default). Demonstration mode.</span></li><li><span></span> <span>{non-empty}</span> <span>Verbose mode, show UTF-8 character code.</span></li></ul></li></ol><hr><h4>Examples</h4><div class=code2><div><pre><code>$ test-tty.sh frames
+┌──┬──┐   ╭──┬──╮
+│  │  │   │  │  │
+├──┼──┤   ├──┼──┤
+│  │  │   │  │  │
+└──┴──┘   ╰──┴──╯
+
+┏━━┳━━┓   ┍━━┯━━┑   ┎──┰──┒
+┃  ┃  ┃   │  │  │   ┃  ┃  ┃
+┣━━╋━━┫   ┝━━┿━━┥   ┠──╂──┨
+┃  ┃  ┃   │  │  │   ┃  ┃  ┃
+┗━━┻━━┛   ┕━━┷━━┙   ┖──┸──┚
+
+╔══╦══╗   ╒══╤══╕   ╓──╥──╖
+║  ║  ║   │  │  │   ║  ║  ║
+╠══╬══╣   ╞══╪══╡   ╟──╫──╢
+║  ║  ║   │  │  │   ║  ║  ║
+╚══╩══╝   ╘══╧══╛   ╙──╨──╜
+
+╎  ┆  ┊   ╏  ┇  ┋   ╌╌╌╌╌╌   ▛▀▀▀▀▀▜
+╎  ┆  ┊   ╏  ┇  ┋   ┄┄┄┄┄┄   ▌     ▐
+╎  ┆  ┊   ╏  ┇  ┋   ╍╍╍╍╍╍   ▌     ▐
+╎  ┆  ┊   ╏  ┇  ┋   ┅┅┅┅┅┅   ▙▄▄▄▄▄▟
+
+$ test-tty.sh blocks verbose
+2580    ▀
+2581    ▁
+2582    ▂
+2583    ▃
+2584    ▄
+2585    ▅
+2586    ▆
+2587    ▇
+2588    █
+2589    ▉
+258a    ▊
+258b    ▋
+258c    ▌
+258d    ▍
+258e    ▎
+258f    ▏
+2590    ▐
+2591    ░
+2592    ▒
+2593    ▓
+2594    ▔
+2595    ▕
+25fc    ◼
+25fe    ◾
+25aa    ▪</code></pre></div></div><hr></article></main><footer id=navigation class=theme><nav><div><hr><a class=nav-parent href=/bhs/bin/dev/ title="Binaries dev"><span class=hidden320>Binaries dev</span></a></div><div><a class=nav-prev href=http://itnomater.github.io/bhs/bin/dev/test-colors256/ title="Script test-colors256"><span class=hidden320>Script test-colors256</span></a><hr><a class=nav-next href=http://itnomater.github.io/bhs/bin/dev/test-directory/ title="Script test-directory"><span class=hidden320>Script test-directory</span></a></div></nav><a id=nav-top class=theme href=#top title="On top">&#x21ea</a></footer></body></html>
